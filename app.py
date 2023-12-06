@@ -18,8 +18,8 @@ urls = [
 
 @app.route("/")
 async def social_network_activity():
-    time_sensitive = request.args.get('time_sensitive', "False")
-    if time_sensitive.lower() == "true":
+    time_sensitive = request.args.get('time_sensitive', "True")
+    if time_sensitive.lower() == "false":
         cached_data = cache.get("social_media_activity")
         if cached_data is not None : return jsonify(cached_data)
 
