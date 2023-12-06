@@ -5,7 +5,6 @@ from flask_caching import Cache
 
 
 app = Flask(__name__)
-app.config.from_object('config')  # Set the configuration variables to the flask application
 cache = Cache(config={'CACHE_TYPE': 'redis', "CACHE_REDIS_URL":"redis://redis:6379/0", "CACHE_DEFAULT_TIMEOUT":30})
 cache.init_app(app)
 
@@ -19,7 +18,7 @@ urls = [
 
 @app.route("/")
 async def social_network_activity():
-    time_sensitive = request.args.get('time_sensitive', "Flase")
+    time_sensitive = request.args.get('time_sensitive', "False")
     if time_sensitive.lower() == "true":
         cached_data = cache.get("social_media_activity")
         if cached_data is not None : return jsonify(cached_data)

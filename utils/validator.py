@@ -23,8 +23,6 @@ class ValidateJsonResponse:
             status = entry.get("status")
             data_has_no_name = name is None
             data_has_no_status = status is None
-
-            print(data_has_no_name, data_has_no_status)
         
             if data_has_no_name and data_has_no_status:
                 return False
